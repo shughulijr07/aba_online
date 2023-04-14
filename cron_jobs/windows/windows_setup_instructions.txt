@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/37586141/laravel-task-scheduler-on-windows-server

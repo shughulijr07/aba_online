@@ -1,0 +1,82 @@
+
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+
+
+    -moz-transform: scale(0.9, 0.9); /* Moz-browsers */
+    zoom: 0.9; /* Other non-webkit browsers */
+    zoom: 90%; /* Webkit browsers */
+}
+
+#login-container{
+    padding-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: #ECECEC;
+    border: 1px solid #EAEAEA;
+    border-radius: 7px;
+    background-image: url("/images/textures/crossword.png");
+    background-repeat: repeat;
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(199,199,199,1);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(199,199,199,1);
+    box-shadow: 0px 0px 5px -1px rgba(199,199,199,1);
+}
+
+#system-title{
+    color: white;
+    background-color: #213368;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
+
+#welcome-message{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #213368;
+}
+
+.left-with-boundary{
+    padding-left:15px;
+    padding-right:15px;
+    border-right: 1px solid #ECECEC;
+}
+
+.middle-without-boundary{
+    padding-left:15px;
+    padding-right:15px;
+}
+
+.right-with-boundary{
+    padding-left:15px;
+    padding-right:15px;
+    border-left: 1px solid #ECECEC;
+}
+
+.btn-primary {
+    background-color: #213368 !important;
+    border-color: #213368 !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #F15A24 !important;
+    border-color: #F15A24 !important;
+}
+
+a{
+    color: #213368;
+}
+
+a:hover {
+    color: #F15A24;
+}

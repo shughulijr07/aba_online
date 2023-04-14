@@ -1,0 +1,214 @@
+html, body{
+    -moz-transform: scale(0.6, 0.6); /* Moz-browsers */
+    zoom: 0.6; /* Other non-webkit browsers */
+    zoom: 60%; /* Webkit browsers */
+    background-color: white;
+
+}
+
+.statements{
+    height: 29.7cm;
+    padding: 1cm 0;
+    color: #000 !important;
+}
+
+.report {
+    position: relative;
+    background-color: #FFF;
+    min-height: 680px;
+    padding: 15px
+}
+
+.report header {
+    padding: 10px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #aaa
+}
+
+.report .company-details {
+    text-align: right
+}
+
+.report .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.report .contacts {
+    margin-bottom: 20px
+}
+
+.report .report-to {
+    text-align: left
+}
+
+.report .report-to .to {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.report .report-details {
+    text-align: right
+}
+
+.report .report-details .report-id {
+    margin-top: 0;
+    color: #213368
+}
+
+.report main {
+    padding-bottom: 50px
+}
+
+.report main .thanks {
+    margin-top: -80px;
+    font-size: 2em;
+    margin-bottom: 50px
+}
+
+.report main .bank-info {
+    padding-left: 6px;
+    border-left: 6px solid #213368;
+    margin-left: 15px;
+}
+
+.report main .notices {
+    text-align: right;
+    color: #F15A24;
+}
+
+.report main .notices-inner {
+    padding-right: 6px;
+    border-right: 6px solid #F15A24;
+    text-align: right;
+}
+
+.report main .notices .notice {
+    font-size: 1.2em
+}
+
+.report footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0
+}
+
+@media print {
+    .report {
+        font-size: 11px!important;
+        overflow: hidden!important
+    }
+
+    .report footer {
+        position: absolute;
+        bottom: 10px;
+        page-break-after: always
+    }
+
+    .report>div:last-child {
+        page-break-before: always
+    }
+}
+
+
+
+
+
+
+
+.special-column-input {
+    width:100%;
+    height:38px !important;
+    margin: 0 !important;
+    padding: 0px 10px;
+    border: none;
+    background: rgb(255,255,255,0.2);
+    text-align: left;
+}
+
+.to-be-on-medical{
+    height: 20px !important;
+    margin-top: 6px !important;
+}
+
+.data-row{
+
+}
+
+.data-column,.data-column1,.data-column2,.data-column3,.data-column4,.data-column5{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+.selection{
+
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .22rem .75rem .375rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.select2-container--default .select2-selection--single{
+    background-color: #fff;
+    border: none !important;
+}
+
+.select2-container--default:focus, .select2-selection--single:focus{
+    outline: none;
+}
+
+
+.timesheet-date{
+    min-width: 55px !important;
+    text-align: center;
+}
+
+
+.no-wrap{
+    white-space: nowrap;
+    height: 39px !important;
+}
+
+.project-row, .total-project-hrs-row, .vacation-row, .sick-row, .holiday-row, .other-row, .grand-total-row{
+    height: 38px !important;
+}
+
+.project-column,  .vacation-column, .sick-column, .holiday-column, .other-column, .grand-total-column{
+    padding: 0!important;
+    text-align: center;
+}
+
+
+.ctitle {
+    text-align: right !important;
+}
+
+.bg-weekend{
+    background-color: rgb(138,43,226,0.3);
+}
+
+.bg-holiday{
+    background-color: rgb(255,255,50,0.6);
+}
+
+.bg-light-dark{
+    background-color: rgba(0,0,0,0.03);
+}
+
+.menu-title{
+    background-color: #FAFAFA;
+    padding:5px 0 5px 10px;
+    border:1px solid #F7F7F7;
+    border-radius:1px !important;
+}

@@ -1,0 +1,80 @@
+html { box-sizing: border-box; }
+
+*,
+*::before,
+*::after { box-sizing: inherit; }
+
+body * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: normal 100%/1.15 "Merriweather", serif;
+    background: #fff url(../images/backgrounds_and_patters/texture.jpg) repeat 0 0;
+    color: #fff;
+}
+
+
+.wrapper {
+    position: relative;
+    max-width: 1298px;
+    height: auto;
+    margin: 2em auto 0 auto;
+    background: transparent url(../images/backgrounds_and_patters/wood-fence.png) no-repeat center top 24em;
+}
+
+
+.box {
+    max-width: 70%;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 1em 1em;
+    text-align: center;
+    background: transparent url(../images/backgrounds_and_patters/dog-family-colored-doodle-drawing.jpg) no-repeat top 10em center;
+}
+
+h1 {
+    margin: 0 0 1rem 0;
+    font-size: 8em;
+    color: #00838F;
+    text-shadow: 0 0 6px #8d8d8d;
+}
+
+p {
+    margin-bottom: 0.5em;
+    font-size: 1.75em;
+    color: #00838F;
+}
+
+p:first-of-type {
+    margin-top: 16em;
+    text-shadow: none;
+}
+
+p > a {
+    border-bottom: 1px dashed #1d1d1d;
+    font-style: italic;
+    text-decoration: none;
+    color: #3d3d3d;
+}
+
+p > a:hover { text-shadow: 0 0 3px #1d1d1d; }
+
+p img { vertical-align: bottom; }
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        background-size: 300px 114px;
+        background-position: center top 22em;
+    }
+
+    .box {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        background-size: 320px 185px;
+    }
+
+    p:first-of-type { margin-top: 12em; }
+}

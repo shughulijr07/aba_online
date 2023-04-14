@@ -1,0 +1,253 @@
+
+.text-btn {
+    color: #002050;
+    outline: none;
+    padding: 0px;
+    border: 0px;
+    box-sizing: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #002050 !important;
+    border-color: #002050 !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #00838F !important;
+    border-color: #00838F !important;
+}
+
+.btn-info {
+    background-color: #00838F !important;
+    border-color: #00838F !important;
+}
+
+.btn-info:hover, .btn-info:active, .btn-info:visited {
+    background-color: #002050 !important;
+    border-color: #002050 !important;
+}
+
+.btn-danger {
+    background-color: #FC3D39 !important;
+    border-color: #FC3D39 !important;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:visited {
+    background-color: #E33437 !important;
+    border-color: #E33437 !important;
+}
+
+.btn-shadow {
+    box-shadow: 0 0.125rem 0.625rem rgba(140,140,140,0.4), 0 0.0625rem 0.125rem rgba(140,140,140,0.5) !important;
+}
+
+.bs-tooltip-bottom .arrow::before,.bs-tooltip-auto.arrow::before{
+    border-bottom-color: #002050 !important;
+}
+
+.tooltip-inner{
+    background-color: #002050 !important;
+}
+
+.two-columns{
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+
+.terms-p{
+    margin-left: 14px;
+}
+
+.upload-label{
+    padding: 5px 10px;
+    border-radius: 5px !important;
+    color: white;
+    background-color: #00838F;
+}
+
+.upload-label:hover{
+    background-color: #002050;
+}
+
+.staff-image-container,.board-member-image-container{
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.not-visited{
+    background-color: #e0e0e0;
+    border-radius: 30px;
+    pointer-events: none;
+}
+
+.visited{
+    background-color: #00838F;
+    border-radius: 30px;
+    pointer-events: none;
+    color: white !important;
+}
+
+.hover-orange{
+    cursor: context-menu;
+}
+
+.hover-orange:hover{
+    color: #00838F;
+}
+
+.orange-text{
+    color: #00838F !important;
+}
+
+.hidden-row{
+    display: none;
+}
+
+.visible{
+    display:block;
+}
+
+.invisible{
+    display: none;
+}
+
+.applied-filter{
+    background-color: #EFEFEF;
+    padding:5px 10px;
+    margin-right: 2px;
+    border: 2px solid #FFFFFF;
+    border-radius: 12px;
+    cursor: default;
+}
+
+
+.column-input,.column-input1,.column-input2,.column-input3,.column-input4,.column-input5 {
+    width:100%;
+    height:38px !important;
+    margin: 0 !important;
+    padding: 0px 10px;
+    border: none;
+    background: rgb(255,255,255,0.2);
+    text-align: left;
+}
+
+.to-be-on-medical{
+    height: 20px !important;
+    margin-top: 6px !important;
+}
+
+.data-row{
+
+}
+
+.data-column,.data-column1,.data-column2,.data-column3,.data-column4,.data-column5{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+.selection{
+
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .22rem .75rem .375rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.select2-container--default .select2-selection--single{
+    background-color: #fff;
+    border: none !important;
+}
+
+.select2-container--default:focus, .select2-selection--single:focus{
+    outline: none;
+}
+
+
+.timesheet-date{
+    min-width: 55px !important;
+    text-align: center;
+}
+
+
+.no-wrap{
+    white-space: nowrap;
+    height: 39px !important;
+}
+
+.project-row, .total-project-hrs-row, .vacation-row, .sick-row, .holiday-row, .other-row, .grand-total-row{
+    height: 38px !important;
+}
+
+.project-column,  .vacation-column, .sick-column, .holiday-column, .other-column, .grand-total-column{
+    padding: 0!important;
+    text-align: center;
+}
+
+
+.ctitle {
+    text-align: right !important;
+}
+
+.bg-weekend{
+    background-color: rgb(138,43,226,0.3);
+}
+
+.bg-holiday{
+    background-color: rgb(255,255,50,0.6);
+}
+
+.bg-light-dark{
+    background-color: rgba(0,0,0,0.03);
+}
+
+.menu-title{
+    background-color: #FAFAFA;
+    padding:5px 0 5px 10px;
+    border:1px solid #F7F7F7;
+    border-radius:1px !important;
+}
+
+.datepicker-container {
+    width: 290px;
+}
+
+
+tr > td.data-column > span > span.selection{
+    border: none !important;
+    border-radius: 0 !important;
+    background: rgba(255, 255, 255, .0)
+}
+
+
+tr > td.data-column > span > span.selection > span.select2-selection > span.select2-selection__rendered{
+    border: none !important;
+    border-radius: 0 !important;
+    background: rgba(255, 255, 255, .0)
+}
+
+/*this will make sure that bootstrap backdrop takes the whole width of the device*/
+.modal-backdrop {
+    width: 100%;
+    height: 100%;
+}
+
+#actions-and-messages{
+    border-left: 3px solid #e9ecef;
+    padding-left: 0 !important;
+}
+

@@ -1,0 +1,112 @@
+html, body{
+    -moz-transform: scale(0.6, 0.6); /* Moz-browsers */
+    zoom: 0.6; /* Other non-webkit browsers */
+    zoom: 60%; /* Webkit browsers */
+
+}
+
+#report{
+    height: 29.7cm;
+    padding: 1cm 0;
+    color: #000 !important;
+}
+
+.report {
+    position: relative;
+    background-color: #FFF;
+    min-height: 680px;
+    padding: 15px
+}
+
+.report header {
+    padding: 10px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #aaa
+}
+
+.report .company-details {
+    text-align: right
+}
+
+.report .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.report .contacts {
+    margin-bottom: 20px
+}
+
+.report .report-to {
+    text-align: left
+}
+
+.report .report-to .to {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.report .report-details {
+    text-align: right
+}
+
+.report .report-details .report-id {
+    margin-top: 0;
+    color: #213368
+}
+
+.report main {
+    padding-bottom: 50px
+}
+
+.report main .thanks {
+    margin-top: -80px;
+    font-size: 2em;
+    margin-bottom: 50px
+}
+
+.report main .bank-info {
+    padding-left: 6px;
+    border-left: 6px solid #213368;
+    margin-left: 15px;
+}
+
+.report main .notices {
+    text-align: right;
+    color: #F15A24;
+}
+
+.report main .notices-inner {
+    padding-right: 6px;
+    border-right: 6px solid #F15A24;
+    text-align: right;
+}
+
+.report main .notices .notice {
+    font-size: 1.2em
+}
+
+.report footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0
+}
+
+@media print {
+    .report {
+        font-size: 11px!important;
+        overflow: hidden!important
+    }
+
+    .report footer {
+        position: absolute;
+        bottom: 10px;
+        page-break-after: always
+    }
+
+    .report>div:last-child {
+        page-break-before: always
+    }
+}
