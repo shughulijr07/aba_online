@@ -10,7 +10,10 @@ use App\Models\TravelRequest;
 use App\Models\AdvancePaymentRequest;
 use App\Models\RequisitionRequest;
 use App\Models\RetirementRequest;
+use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardsController extends Controller
 {
@@ -25,12 +28,16 @@ class DashboardsController extends Controller
         $requisitionRequests = RequisitionRequest::countTravelRequests();
         $retirementRequests = RetirementRequest::countTravelRequests();
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
         $model_name = "";
         $view_type = "";
         $controller_name = "";
 
         return view('admin.super_admin_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'retirementRequests','requisitionRequests','paymentRequests','controller_name','model_name','view_type')
             );
     }
@@ -50,8 +57,12 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
         return view('admin.system_admin_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'retirementRequests','requisitionRequests','paymentRequests','controller_name','model_name','view_type'));
     }
 
@@ -70,8 +81,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.fd_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'paymentRequests','requisitionRequests','retirementRequests','controller_name','model_name','view_type'));
     }
 
@@ -90,8 +106,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.md_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'paymentRequests','requisitionRequests','retirementRequests','controller_name','model_name','view_type'));
     }
 
@@ -110,8 +131,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.hrm_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'retirementRequests','requisitionRequests','paymentRequests','controller_name','model_name','view_type'));
     }
 
@@ -130,8 +156,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.accountant_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'requisitionRequests','retirementRequests','paymentRequests','controller_name','model_name','view_type'));
     }
 
@@ -150,8 +181,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.supervisor_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'retirementRequests','requisitionRequests','paymentRequests','controller_name','model_name','view_type'));
     }
 
@@ -170,8 +206,13 @@ class DashboardsController extends Controller
         $view_type = "";
         $controller_name = "";
 
+        $user_id = Auth::user()->id;
+        $staff_data = Staff::where('user_id',$user_id)->first();
+        $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+
+
         return view('admin.employee_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
                 'paymentRequests','requisitionRequests','retirementRequests','controller_name','model_name','view_type'));
     }
 

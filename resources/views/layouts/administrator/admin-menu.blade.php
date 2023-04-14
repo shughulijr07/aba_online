@@ -1,9 +1,4 @@
-@php
-    $user_id = Auth::user()->id;
 
-    $staff_data = App\Models\Staff::where('user_id',$user_id)->first();
-    $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
-@endphp
 <ul class="vertical-nav-menu">
 
     <!-- Dashboard Menu -->
