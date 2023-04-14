@@ -10,9 +10,9 @@
                     <i class="fas fa-list-ul"></i>
                 </div>
                 <div>
-                    <div class="text-primary">List Of SHDEPHA Tanzania Staff</div>
+                    <div class="text-primary">List Of ABA Alliance Staff</div>
                     <div class="page-title-subheading">
-                        Below is a list of SHDEPHA Tanzania Staff
+                        Below is a list of ABA Alliance Staff
                     </div>
                 </div>
             </div>
