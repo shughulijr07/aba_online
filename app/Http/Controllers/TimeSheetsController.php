@@ -9,6 +9,7 @@ use App\Events\TimeSheetApprovedBySupervisorEvent;
 use App\Events\TimeSheetRejectedEvent;
 use App\Events\TimeSheetReturnedEvent;
 use App\Events\TimeSheetSubmittedEvent;
+use App\Models\GeneralS1etting;
 use App\Models\GeneralSetting;
 use App\Models\Holiday;
 use App\Models\JsonTimeSheetLine;
@@ -637,9 +638,10 @@ class TimeSheetsController extends Controller
         $clients = Project::all();
         $time_sheet = TimeSheet::find($id);
         if ($time_sheet) {
-            $super = Supervisor::find($time_sheet->responsible_spv);
+            // $super = Supervisor::find($time_sheet->responsible_spv);
+            //  dd($time_sheet);
 
-            $supervisor = Staff::find($super->id);
+            $supervisor = Staff::find($time_sheet->responsible_spv);
 
         $spv_name = ucwords($supervisor->first_name.' '.$supervisor->last_name);
         $employee_name = ucwords($time_sheet->staff->first_name.' '.$time_sheet->staff->last_name);
@@ -1323,9 +1325,10 @@ class TimeSheetsController extends Controller
 
         $time_sheet = TimeSheet::find($time_sheet_id);
 
-        $super = Supervisor::find($time_sheet->responsible_spv);
+        // $super = Supervisor::find($time_sheet->responsible_spv);
 
-        $supervisor = Staff::find($super->id);
+        // $supervisor = Staff::find($super->id);
+        $supervisor = Staff::find($time_sheet->responsible_spv);
 
         $spv_name = ucwords($supervisor->first_name.' '.$supervisor->last_name);
 

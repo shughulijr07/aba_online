@@ -102,7 +102,7 @@
                     <div class="col">
                         <button class="btn btn-primary" id="tasks-submit">
                             @if ($my_staff_id == $responsible_spv)
-                            Cancel   
+                            Back   
                             @else
                             Save records
                             @endif
