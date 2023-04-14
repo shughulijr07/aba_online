@@ -583,7 +583,7 @@ class TimeSheetsController extends Controller
             if ($request->mode == "addclient") {
                 $data = request()->validate([
                     'time_sheet_id' => 'required',
-                    'project_id' => 'required|unique:timesheet_clients',
+                    'project_id' => 'required',
                     'time_sheet_id' => 'required'
                 ]);
         
@@ -595,7 +595,7 @@ class TimeSheetsController extends Controller
             if ($request->mode == "addtask") {
                 $data = request()->validate([
                     'timesheet_client_id' => 'required',
-                    'task_name' => 'required|unique:tasks',
+                    'task_name' => 'required',
                     'time_sheet_id' => 'required',
                    
                 ]);
@@ -660,7 +660,6 @@ class TimeSheetsController extends Controller
 
      public function new_storeForAnotherStaff(Request $request)
     {
-        // dd(auth()->user()->staff->supervisor_id);
         $data = request()->validate([
             'staff_id' => 'required',
             // 'responsible_spv' =>  'nullable|required',
@@ -671,8 +670,8 @@ class TimeSheetsController extends Controller
         //get timesheet header data
         $staff_id = $data['staff_id'];
 
-        if (session('role') == 1) {
-            $responsible_spv = $data['responsible_spv'];
+        if (Auth::user()->role_id == 1) {
+            $responsible_spv =$request->responsible_spv;
         } else {
             $supv = Staff::find($staff_id);
             $responsible_spv = $supv->supervisor_id;
