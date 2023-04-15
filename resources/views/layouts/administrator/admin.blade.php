@@ -341,6 +341,22 @@
 @if($model_name ?? '' == 'gl_account' && $view_type ?? '' == 'index')
     @include('gl_accounts.filter-modal')
 @endif
+
+ 
+<script>
+window.onload = function () {
+  var span = document.createElement('span');
+
+  span.className = 'fa';
+  span.style.display = 'none';
+  document.body.insertBefore(span, document.body.firstChild);
+  
+  alert(window.getComputedStyle(span, null).getPropertyValue('font-family'));
+    
+  document.body.removeChild(span);
+};
+</script>
+
 @yield('script')
 </body>
 </html>

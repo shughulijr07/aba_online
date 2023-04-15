@@ -1,9 +1,12 @@
+{{-- Check if the logged in user is supervisor or not --}}
 @php
         $user_id = Auth::user()->id;
         $staff_data = \App\Models\Staff::where('user_id',$user_id)->first();
         $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
-
 @endphp
+{{-- End of Check if the logged in user is supervisor or not --}}
+
+
 <ul class="vertical-nav-menu">
 
     <!-- Dashboard Menu -->
