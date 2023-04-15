@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/png" href="{{asset('images/icon.png')}}"/>
+    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -171,7 +171,7 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                        class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="@if(isset(auth()->user()->staff->image))/storage/{{auth()->user()->staff->image}}@else /images/avatars/general.png @endif" alt="">
+                                        <img width="42" class="rounded-circle" src="@if(isset(auth()->user()->staff->image))/storage/{{auth()->user()->staff->image}}@else asset('images/avatars/general.png') @endif" alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
