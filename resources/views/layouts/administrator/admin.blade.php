@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="{{asset('/images/icon.png')}}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -85,7 +85,7 @@
                             <div class="dropdown-menu-header">
                                 <div class="dropdown-menu-header-inner bg-success">
                                     <div class="menu-header-image opacity-0"
-                                         style="background-image: url('/images/dropdown-header/city2.jpg');"></div>
+                                         style="background-image: url('{{asset('/images/dropdown-header/city2.jpg')}}');"></div>
                                     <div class="menu-header-content text-left">
                                         <h5 class="menu-header-title">Leave Requests</h5>
                                         <h6 class="menu-header-subtitle">Summary Of Requests To Be Processed</h6>
@@ -133,7 +133,7 @@
                             <div class="dropdown-menu-header">
                                 <div class="dropdown-menu-header-inner bg-success">
                                     <div class="menu-header-image opacity-0"
-                                         style="background-image: url('/images/dropdown-header/city2.jpg');"></div>
+                                         style="background-image: url('{{asset('/images/dropdown-header/city2.jpg')}}');"></div>
                                     <div class="menu-header-content text-left">
                                         <h5 class="menu-header-title">Time Sheets</h5>
                                         <h6 class="menu-header-subtitle">Time Sheets Summary</h6>
@@ -179,7 +179,7 @@
                                         <div class="dropdown-menu-header">
                                             <div class="dropdown-menu-header-inner bg-info">
                                                 <div class="menu-header-image opacity-2"
-                                                     style="background-image: url('/images/dropdown-header/city3.jpg');"></div>
+                                                     style="background-image: url('{{asset('/images/dropdown-header/city3.jpg')}}');"></div>
                                                 <div class="menu-header-content text-left">
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
