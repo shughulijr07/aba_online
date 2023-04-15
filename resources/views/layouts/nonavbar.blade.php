@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/png" href="/images/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="{{asset('/images/icon.png')}}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,7 +26,7 @@
 
                     <div class="row mt-2">
                         <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                            <img src="/images/tmarc_logo2.png" alt="">
+                            <img src="{{asset('/images/tmarc_logo2.png')}}" alt="">
                         </div>
                     </div>
 
