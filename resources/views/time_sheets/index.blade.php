@@ -47,7 +47,7 @@
                     <td>{{ date("d-m-Y H:i:s", strtotime($time_sheet->created_at)) }}</td>
                     <td>
                     @if($time_sheet->status == 0 || $time_sheet->status == 10 )
-                        <a href="/time_sheet_edit/{{ $time_sheet->id }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Edit</a>
+                        <a href="/time_sheet_edit/{{ $time_sheet->id }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Fill Timesheet</a>
                     @else
                         <a href="/time_sheet/{{ $time_sheet->id }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View</a>
                     @endif
