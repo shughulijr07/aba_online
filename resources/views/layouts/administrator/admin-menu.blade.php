@@ -1,8 +1,9 @@
-{{-- Check if the logged in user is supervisor or not --}}
+{{-- Check if the logged in user is supervisor/superadmin --}}
 @php
         $user_id = Auth::user()->id;
         $staff_data = \App\Models\Staff::where('user_id',$user_id)->first();
         $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
+        $role_id = Auth::user()->role_id;
 @endphp
 {{-- End of Check if the logged in user is supervisor or not --}}
 
@@ -266,7 +267,7 @@
     <li class="app-sidebar__heading menu-title" id="timesheet-menu-title" style="cursor:pointer">Time sheets</li>
     <div class="menu-content" id="timesheet-menu-content">
         @can('view-menu','my_time_sheets_menu_item')
-       @if ($isSupervisor)
+       @if ($isSupervisor || $role_id == 1)
             <li>
             <a href="{{url('/time-sheets')}}">
                 <i class="metismenu-icon  pe-7s-date">
@@ -340,7 +341,7 @@
             </a>
         </li>
         @endcan
-        @if ($isSupervisor)
+        @if ($isSupervisor || $role_id == 1)
             @can('view-menu','time_sheet_approving_menu_item')
             <li>
                 <a href="#">
@@ -411,7 +412,7 @@
             </a>
         </li>
         @endcan
-       @if ($isSupervisor)
+       @if ($isSupervisor || $role_id == 1)
             @can('view-menu','create_timesheet_for_another_staff_menu')
                 <li>
                     <a href="{{url('/create_timesheet_for_another_staff')}}">
