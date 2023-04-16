@@ -285,7 +285,7 @@ class TimeSheetsController extends Controller
 
         $timeSheetSupervisors = Staff::get_supervisors('2');
         // if (session('role' == 1)) {
-        if ($my_staff_id->staff_id == 1){
+        if (Auth::user()->role_id == 1){
             $employees = Staff::all();
         } else {
             $employees = Staff::new_get_valid_staff_list($supervisor_id);

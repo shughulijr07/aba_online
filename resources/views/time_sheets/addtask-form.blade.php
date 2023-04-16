@@ -53,36 +53,36 @@
                                         </div>
                                     </div>
                                     
-                                    @if ($my_staff_id->staff_id == 1)
+                @if (Auth::user()->role_id == 1)
 
-                                        <div class="col-md-3">
-                                            <div class="position-relative form-group">
-                                                <label for="responsible_spv" class="">
-                                                    <span>Supervisor</span>
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select name="responsible_spv" id="responsible_spv"
-                                                    class="form-control @error('responsible_spv') is-invalid @enderror">
-                                                    <option value="">Select Supervisor</option>
-                                                    @foreach ($timeSheetSupervisors as $supervisor)
-                                                        <option value="{{ $supervisor->id }}"
-                                                            @if ($supervisor->id == old('responsible_spv')) selected @endif>
-                                                            {{ ucwords($supervisor->first_name . ' ' . $supervisor->last_name) }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                    <div class="col-md-3">
+                        <div class="position-relative form-group">
+                            <label for="responsible_spv" class="">
+                                <span>Supervisor</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select name="responsible_spv" id="responsible_spv"
+                                class="form-control @error('responsible_spv') is-invalid @enderror">
+                                <option value="">Select Supervisor</option>
+                                @foreach ($timeSheetSupervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}"
+                                        @if ($supervisor->id == old('responsible_spv')) selected @endif>
+                                        {{ ucwords($supervisor->first_name . ' ' . $supervisor->last_name) }}
+                                    </option>
+                                @endforeach
+                            </select>
 
-                                                @error('responsible_spv')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                            @error('responsible_spv')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
 
 
-                                            </div>
-                                        </div>
-                                    @endif
+                        </div>
+                    </div>
+                @endif
 
                                     <div class="col-md-1">
                                         <div class="position-relative form-group">
