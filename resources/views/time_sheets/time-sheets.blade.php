@@ -48,7 +48,7 @@
                             <td>{{$i}}</td>
                             <td>{{$time_sheet->first_name}} {{$time_sheet->middle_name}} {{$time_sheet->last_name}}</td>
                             @if (Auth::user()->role_id == 1)
-                            <td>{{$spv->first_name}}</td>
+                            <td>{{$spv->first_name}} {{$spv->last_name}}</td>
                             @endif
                             <td>{{ date("F", mktime(0, 0, 0, $time_sheet->month, 10)) }}</td>
                             <td>{{$time_sheet->year}}</td>
