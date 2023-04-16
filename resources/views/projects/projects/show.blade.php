@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="main-card mb-3 card">
+    {{-- <div class="main-card mb-3 card">
         <div class="card-header-tab card-header">
             <div class="card-header-title font-size-lg text-capitalize font-weight-bold">
                 <i class="header-icon lnr-briefcase mr-3 text-primary opacity-6"> </i>
@@ -97,6 +97,6 @@
                 </tfoot>
             </table>
         </div>
-    </div>
+    </div> --}}
 
 @endsection

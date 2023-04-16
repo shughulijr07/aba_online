@@ -1131,12 +1131,12 @@
                         </i>All Clients
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{url('/activities')}}">
                         <i class="metismenu-icon">
                         </i>Activities
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
         @endcan

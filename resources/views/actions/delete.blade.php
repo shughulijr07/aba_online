@@ -6,7 +6,11 @@
             @method('DELETE')
             @csrf
             <button type="submit" class="text-btn">
+                @if ($controller_name == 'projects')
+            	Delete Client
+                @else
             	Delete {{ucwords( str_ireplace('_', ' ', $model_name) )}}
+                @endif
         	</button>
         </form>
     </div>
