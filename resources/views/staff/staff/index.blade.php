@@ -77,7 +77,7 @@
                     <td>{{ $staff->first_name }}</td>
                     <td>{{ $staff->last_name }}</td>
                     <td>{{ $staff->gender }}</td>
-                    <td>{{ $staff->jobTitle->title }}</td>
+                    <td>{{ $staff->jobTitle->title ?? null}}</td>
                     <td>{{ $staff->official_email }}</td>
                     <td>{{ $staff->phone_no }}</td>
                     <td>{{ $staff->staff_status }}</td>
