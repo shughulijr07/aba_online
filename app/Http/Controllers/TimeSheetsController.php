@@ -83,19 +83,24 @@ class TimeSheetsController extends Controller
         // dd($employee_id);
 
         $supv = Supervisor::where('staff_id', $employee_id)->first();
+        // dd($supv);
         //for my time sheets
-        $time_sheets = DB::table('time_sheets')
-                       ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
-                       ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
-                        ->where('responsible_spv', $supv->staff_id)
-                       ->get();
+   
 
-        if (Auth::user()->role_id == 1) {
+           if (Auth::user()->role_id == 1) {
             $time_sheets = DB::table('time_sheets')
                        ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
                        ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
                        ->get();
-        }               
+             } else {
+                 $time_sheets = DB::table('time_sheets')
+                       ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
+                       ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
+                        ->where('responsible_spv', $supv->staff_id)
+                       ->get();
+             }
+        
+                   
         return view('time_sheets.time-sheets')
         ->with('time_sheets', $time_sheets)
                     ;

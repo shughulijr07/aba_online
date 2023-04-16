@@ -30,7 +30,4 @@
     <div class="row" id="my_items">
         @include('admin.dashboard_sections.my_items')
     </div>
-
-
-
 @endsection
