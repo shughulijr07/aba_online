@@ -117,7 +117,7 @@
                 <div class="col-md-4">
                     <div class="position-relative form-group">
                         <label for="house_no" class="">
-                            <span>House No.</span>
+                            <span>Floor No.</span>
                             <span class="text-danger">*</span>
                         </label>
                         <input name="house_no" id="house_no" type="text" class="form-control @error('house_no') is-invalid @enderror" value="{{ old('house_no') ?? $company_info->house_no}} ">
