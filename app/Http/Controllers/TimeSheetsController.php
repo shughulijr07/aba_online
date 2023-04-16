@@ -90,6 +90,12 @@ class TimeSheetsController extends Controller
                         ->where('responsible_spv', $supv->staff_id)
                        ->get();
 
+        if (Auth::user()->role_id == 1) {
+            $time_sheets = DB::table('time_sheets')
+                       ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
+                       ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
+                       ->get();
+        }               
         return view('time_sheets.time-sheets')
         ->with('time_sheets', $time_sheets)
                     ;

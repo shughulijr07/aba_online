@@ -26,6 +26,9 @@
                     <tr>
                         <th>No.</th>
                         <th>Staff</th>
+                        @if (Auth::user()->role_id == 1)
+                        <th>Supervisor</th>
+                        @endif
                         <th>Month</th>
                         <th>Year</th>
                         <th>Status</th>
@@ -38,10 +41,15 @@
                         $i = 1;
                     @endphp
                     @foreach ($time_sheets as $time_sheet)
-                        
+                        @php
+                         $spv = \App\Models\Staff::find($time_sheet->responsible_spv);
+                        @endphp
                         <tr>
                             <td>{{$i}}</td>
                             <td>{{$time_sheet->first_name}} {{$time_sheet->middle_name}} {{$time_sheet->last_name}}</td>
+                            @if (Auth::user()->role_id == 1)
+                            <td>{{$spv->first_name}}</td>
+                            @endif
                             <td>{{ date("F", mktime(0, 0, 0, $time_sheet->month, 10)) }}</td>
                             <td>{{$time_sheet->year}}</td>
                             <td>{{App\Models\TimeSheet::findStatus($time_sheet->status)}}</td>
