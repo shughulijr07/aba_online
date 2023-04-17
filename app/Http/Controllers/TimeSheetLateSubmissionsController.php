@@ -23,7 +23,7 @@ class TimeSheetLateSubmissionsController extends Controller
         $months = TimeSheet::$months;
 
         return view('time_sheet_late_submissions.index',
-            compact('time_sheet_late_submissions','months'));
+            compact('time_sheet_late_submissions','months',));
     }
 
 
