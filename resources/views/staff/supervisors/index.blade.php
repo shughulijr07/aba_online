@@ -49,7 +49,7 @@
                                 <td class="staff-id">{{ $staff->id }}</td>
                                 <td class="staff-no">{{ $staff->staff_no }}</td>
                                 <td class="staff-name">{{ ucwords($staff->first_name.' '.$staff->last_name) }}</td>
-                                <td class="staff-dep">{{ $staff->department->name }}</td>
+                                <td class="staff-dep">{{ $staff->department->name ?? null}}</td>
                                 <td class="supervisor-name">
                                     <?php
                                     if($staff->supervisor_id == null || $staff->supervisor_id == ''){
