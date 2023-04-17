@@ -80,14 +80,11 @@ class TimeSheetsController extends Controller
         }
 
         $employee_id = auth()->user()->staff->id;
-        // dd($employee_id);
-
         $supv = Supervisor::where('staff_id', $employee_id)->first();
         // dd($supv);
         //for my time sheets
-   
 
-           if (Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id == 1) {
             $time_sheets = DB::table('time_sheets')
                        ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
                        ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
@@ -98,7 +95,7 @@ class TimeSheetsController extends Controller
                        ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
                         ->where('responsible_spv', $supv->staff_id)
                        ->get();
-             }
+        }
         
                    
         return view('time_sheets.time-sheets')
@@ -289,6 +286,7 @@ class TimeSheetsController extends Controller
         // $supervisor = Staff::find($super->staff_id);
 
         $my_staff_id = Supervisor::where('staff_id', $current_logged_staff->id)->first();
+        
         $supervisor_id = $my_staff_id->staff_id;
         
         //override supervisor settings if no supervisor have been assigned to this staff

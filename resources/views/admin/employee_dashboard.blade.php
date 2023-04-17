@@ -12,7 +12,6 @@
                 </div>
                 <div>
                     <div class="text-primary">Dashboard</div>
-                    <div class="page-title-subheading"></div>
                 </div>
             </div>
 
@@ -22,23 +21,19 @@
         </div>
     </div>
 
-
-
-
-
-
-
     <div class="row" id="my_items">
+        {{-- @include('admin.dashboard_sections.my_items') --}}
+        {{-- @include('admin.dashboard_sections.spv_items') --}}
 
-        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/request_leave')}}">
+        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('admin_time_sheets/10')}}">
             <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-primary border-danger card">
                 <div class="widget-chat-wrapper-outer">
                     <div class="widget-chart-content">
-                        <div class="widget-title opacity-5 text-uppercase">My Leaves</div>
+                        <div class="widget-title opacity-5 text-uppercase">Draft Timesheets</div>
                         <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
                             <div class="widget-chart-flex align-items-center">
                                 <div>
-                                    Request Leave
+                                    Draft Timesheets
                                 </div>
                             </div>
                         </div>
@@ -47,33 +42,16 @@
             </div>
         </div>
 
-        <div  class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/new_time_sheet')}}">
-            <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-danger border-danger card">
-                <div class="widget-chat-wrapper-outer">
-                    <div class="widget-chart-content">
-                        <div class="widget-title opacity-5 text-uppercase">My Time Sheets</div>
-                        <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
-                            <div class="widget-chart-flex align-items-center">
-                                <div>
-                                    Create Time Sheet
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/set_objectives')}}">
+        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/admin_time_sheets/0')}}">
             <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-primary border-danger card">
                 <div class="widget-chat-wrapper-outer">
                     <div class="widget-chart-content">
-                        <div class="widget-title opacity-5 text-uppercase">My Objectives</div>
+                        <div class="widget-title opacity-5 text-uppercase">Returned For Correction </div>
                         <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
                             <div class="widget-chart-flex align-items-center">
                                 <div>
-                                    Set Objectives
+                                    Returned For 
+                                    Correction
                                 </div>
                             </div>
                         </div>
@@ -82,33 +60,15 @@
             </div>
         </div>
 
-
-        <div  class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/new_travel_request')}}">
-            <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-danger border-danger card">
-                <div class="widget-chat-wrapper-outer">
-                    <div class="widget-chart-content">
-                        <div class="widget-title opacity-5 text-uppercase">My Travel Requests</div>
-                        <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
-                            <div class="widget-chart-flex align-items-center">
-                                <div>
-                                    Make A Travel Request
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/leave_plans/create')}}">
+        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/admin_time_sheets/20')}}">
             <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-primary border-danger card">
                 <div class="widget-chat-wrapper-outer">
                     <div class="widget-chart-content">
-                        <div class="widget-title opacity-5 text-uppercase">My Leave Plans</div>
+                        <div class="widget-title opacity-5 text-uppercase">Waiting for SPV Approval </div>
                         <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
                             <div class="widget-chart-flex align-items-center">
                                 <div>
-                                    Create A Leave Plan
+                                    Waiting for SPV Approval
                                 </div>
                             </div>
                         </div>
@@ -117,7 +77,42 @@
             </div>
         </div>
 
-    </div>
-
-
+        <div class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/admin_time_sheets/50')}}">
+            <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-primary border-danger card">
+                    <div class="widget-chat-wrapper-outer">
+                        <div class="widget-chart-content">
+                            <div class="widget-title opacity-5 text-uppercase">Approved Timesheet </div>
+                            <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
+                                <div class="widget-chart-flex align-items-center">
+                                    <div>
+                                        Approved Timesheets
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+                      {{-- Approved Timesheets --}}
+            <div  class="col-md-6 col-lg-6 clickable-row" data-href="{{url('/admin_time_sheets/99')}}">
+                <div class="widget-chart widget-chart2 text-left mb-3 card-btm-border card-shadow-success border-danger card">
+                    <div class="widget-chat-wrapper-outer">
+                        <div class="widget-chart-content">
+                            <div class="widget-title opacity-5 text-uppercase">
+                                {{-- ({{ $requisitionRequests['waitingForMDApproval2'] }}) --}}
+                                Rejected Timesheets
+                            </div>
+                            <div class="widget-numbers mt-2 fsize-3  mb-0 w-100">
+                                <div class="widget-chart-flex align-items-center">
+                                    <div>
+                                        Rejected Timesheets
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- End of Approved Timesheets --}}      
+        </div>
 @endsection

@@ -11,9 +11,11 @@ use App\Models\AdvancePaymentRequest;
 use App\Models\RequisitionRequest;
 use App\Models\RetirementRequest;
 use App\Models\Staff;
+use App\Models\Supervisor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardsController extends Controller
 {
@@ -185,9 +187,25 @@ class DashboardsController extends Controller
         $staff_data = Staff::where('user_id',$user_id)->first();
         $isSupervisor = DB::table('supervisors')->where('staff_id', $staff_data->id)->first();
 
+        // For new Dashboard
+        $employee_id = auth()->user()->staff->id;
+        $supv = Supervisor::where('staff_id', $employee_id)->first();
+            if (Auth::user()->role_id == 1) {
+            $time_sheets = DB::table('time_sheets')
+                       ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
+                       ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
+                       ->get();
+             } else {
+                 $time_sheets = DB::table('time_sheets')
+                       ->join('staff', 'time_sheets.staff_id', '=', 'staff.id')
+                       ->select('time_sheets.*', 'staff.first_name','staff.middle_name','staff.last_name')
+                        ->where('responsible_spv', $supv->staff_id)
+                       ->get();
+        }
+        // End for new Dashboard
 
         return view('admin.supervisor_dashboard',
-            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor',
+            compact('leavePlans','leaveRequests','timeSheets','travelRequests','performanceObjectives','isSupervisor','time_sheets',
                 'retirementRequests','requisitionRequests','paymentRequests','controller_name','model_name','view_type'));
     }
 
