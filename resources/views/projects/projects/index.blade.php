@@ -42,7 +42,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/projects/import_from_excel')}}">
+                                <a class="nav-link" href="{{url('/clients/import_from_excel')}}">
                                     <i class="nav-link-icon fas fa-plus"></i>
                                     <span>Import From Excel</span>
                                 </a>
