@@ -40,14 +40,21 @@ class ActivitiesController extends Controller
         //         ->where('project_id', '=', $project->id)
         //         ->get();
         // return response()->json($activities);
-
+        
         $project_number = $request->project_id;
+        
         $client = $this->getProject($project_number);
         $client_id = $client->id;
-        $timesheet_client = TimesheetClient::where('project_id', $client_id)->first();
+        $timesheet_id = $request->timesheet_id;
+        
+        $timesheet_client = TimesheetClient::select('id')
+        ->where('project_id', $client_id)
+        ->where('time_sheet_id', $timesheet_id)
+        ->first();
+
         $timesheet_client_id = $timesheet_client->id;
 
-         if( !$client ){
+         if( !$timesheet_client ){
              return  response()->json(['status' => 'error', 'message' => 'something is wrong']);
          }
         $activities = Task::where('timesheet_client_id', $timesheet_client_id)

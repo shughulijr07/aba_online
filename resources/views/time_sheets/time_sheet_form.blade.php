@@ -3,7 +3,7 @@
 <div id="main-div" class="main-card mb-3 card">
     <div class="card-body">
         <h5 class="card-title text-danger" style="display: none;">Time Sheet Form</h5>
-
+        
         <!-- Header -->
         <div class="row mb-3">
             <div class="col-md-12">
@@ -434,6 +434,7 @@
 
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
+    let timesheet_id = {!! $time_sheet->id !!};
 
     $(function () {
 
@@ -479,7 +480,7 @@
             type: "post",
             url: `/api/project_activities`,
             dataType: "json",
-            data: {'project_id': project_id},
+            data: {'project_id': project_id, 'timesheet_id':timesheet_id},
             success: function (response) {
                     
                 var activities = response
