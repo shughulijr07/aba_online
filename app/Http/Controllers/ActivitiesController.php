@@ -30,17 +30,7 @@ class ActivitiesController extends Controller
     }
 
     public  function  getProjectActivitiesApi(Request $request)
-    {
-        // $number = $request->project_id;
-        // $project = $this->getProject($number);
-        // if( !$project ){
-        //     return  response()->json(['status' => 'error', 'message' => 'something is wrong']);
-        // }
-        //  $activities = Activity::select('id', 'name', 'code')
-        //         ->where('project_id', '=', $project->id)
-        //         ->get();
-        // return response()->json($activities);
-        
+    {   
         $project_number = $request->project_id;
         
         $client = $this->getProject($project_number);
@@ -55,12 +45,12 @@ class ActivitiesController extends Controller
         $timesheet_client_id = $timesheet_client->id;
 
          if( !$timesheet_client ){
-             return  response()->json(['status' => 'error', 'message' => 'something is wrong']);
+             return  response()->json(['status' => 'error', 'message' => 'Something is wrong']);
          }
         $activities = Task::where('timesheet_client_id', $timesheet_client_id)
         ->get();
        
-        return response()->json($activities);
+        return response()->json($activities, $timesheet_client);
 
     }
 
@@ -69,7 +59,6 @@ class ActivitiesController extends Controller
         if (Gate::denies('access',['activities','view'])){
             abort(403, 'Access Denied');
         }
-
 
         $projects = Project::all();
         $companyLogoBase64 = CompanyInformation::$companyLogoBase64;

@@ -104,7 +104,7 @@
                             @if ($my_staff_id == $responsible_spv)
                             Back   
                             @else
-                            Save records
+                            Save
                             @endif
                         </button>
                         {{-- <button class="btn btn-danger" style="" id="cancel-form">Cancel</button> --}}
@@ -213,27 +213,6 @@
 
                         <!-- (DAYBOX) Table Body Starts Here, All Projects Entries Are Found Here -->
                         <tbody>
-                        {{-- @foreach($projects as $project_number=>$project_name)
-                            <tr class="project-row" id="project--{{$project_number}}">
-                                @for( $d=1 ; $d<=$days_in_month; $d++)
-                                    <?php
-                                    // $day_name = date('D',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
-                                    // $full_date = date('d-m-Y',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
-                                    ?>
-                                    <td class="project-column project--{{$project_number}} date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
-                                        <input
-                                            readonly
-                                            class="daybox column-input column-day-{{$d}} project--{{$d}}"
-                                            name="project--{{$project_number}}--{{$d}}"
-                                            id="project--{{$project_number}}--{{$d}}"
-                                            value="@if( in_array( 'project--'.$project_number.'--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['project--'.$project_number.'--'.$d]}}@endif"
-                                            autocomplete="off"
-                                            tasks="@if( in_array( 'tasks--'.$project_number.'--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['tasks--'.$project_number.'--'.$d]}}@endif"
-                                        >
-                                    </td>
-                                @endfor
-                            </tr>
-                        @endforeach --}}
 
                          @foreach($projects as $client_data2)
                             <tr class="project-row" id="project--{{$client_data2->number}}">

@@ -89,6 +89,7 @@
                 <tfoot>
                 <tr>
                     <th>Id</th>
+                    <th>Staff No.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>
