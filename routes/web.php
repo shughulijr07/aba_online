@@ -36,6 +36,7 @@ use App\Http\Controllers\PerformanceObjectivesController;
 use App\Http\Controllers\StaffPerformancesController;
 use App\Http\Controllers\RetirementRequestsController;
 use App\Http\Controllers\CompanyInformationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\StaffDependentsController;
@@ -320,6 +321,8 @@ Route::get('/staff_retirement_records',[RetirementRequestsController::class,'sta
 Route::post('/staff_retirement_records',[RetirementRequestsController::class,'staffTravelRequestsList']);
 Route::get('/retirement_request_statement/{id}',[RetirementRequestsController::class,'showTravellingStatement']);
 
+/************************* CONTACT ROUTES ***************************/
+Route::get('/contact',[ContactController::class, 'index']);
 
 /************ PERFORMANCE MANAGEMENT ROUTES *************************/
 Route::get('/set_objectives',[PerformanceObjectivesController::class,'create']);

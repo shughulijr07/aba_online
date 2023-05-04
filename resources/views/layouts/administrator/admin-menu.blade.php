@@ -1292,9 +1292,19 @@
         </li>
         @endcan
     </div>
-
     @endcan
     <!-- End Of Settings Menu -->
+
+    {{-- Contacts Menu --}}
+    <li class="app-sidebar__heading menu-title" id="contact-menu-title" style="cursor:pointer">Contact</li>
+    <div class="menu-content" id="contact-menu-content">
+       <li>
+            <a href="{{url('/contact')}}">
+                <i class="metismenu-icon pe-7s-note2"></i> Contact Form
+            </a>
+        </li>
+    </div>
+    {{-- End Of Contact Menu --}}
 
 </ul>
 
