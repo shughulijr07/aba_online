@@ -37,8 +37,9 @@
                                     <div class="col-sm-9 col-md-9">
                                        <select name="" id="" class="form-control">
                                           <option value="">-- None --</option>
-                                          <option value="">One</option>
-                                          <option value="">Two</option>
+                                          <option value="">Category 1</option>
+                                          <option value="">Category 2</option>
+                                          <option value="">Category 3</option>
                                        </select>
                                     </div>
                                  </div>
@@ -53,9 +54,11 @@
                                     </label>
                                     <div class="col-sm-9 col-md-9">
                                        <select name="" id="" class="form-control" disabled>
-                                          <option value="">-- None --</option>
-                                          <option value="">One</option>
-                                          <option value="">Two</option>
+                                          <option value="">--None--</option>
+                                          <option value="">Desktop</option>
+                                          <option value="">Laptop</option>
+                                          <option value="">Printer</option>
+                                          <option value="">Scanner</option>
                                        </select>
                                     </div>
                                  </div>
@@ -70,9 +73,11 @@
                                     </label>
                                     <div class="col-sm-9 col-md-9">
                                        <select name="" id="" class="form-control" disabled>
-                                          <option value="">-- None --</option>
-                                          <option value="">One</option>
-                                          <option value="">Two</option>
+                                          <option value="">--None--</option>
+                                          <option value="">Version 1</option>
+                                          <option value="">Version 2</option>
+                                          <option value="">Version 3</option>
+                                          <option value="">Version 4</option>
                                        </select>
                                     </div>
                                  </div>
@@ -88,9 +93,9 @@
                                     </label>
                                     <div class="col-sm-9 col-md-9">
                                        <select name="" id="" class="form-control">
-                                          <option value="">-- None --</option>
-                                          <option value="">One</option>
-                                          <option value="">Two</option>
+                                          <option value="">--None--</option>
+                                          <option value="">No Internet</option>
+                                          <option value="">Not printing</option>
                                        </select>
                                     </div>
                                  </div>
