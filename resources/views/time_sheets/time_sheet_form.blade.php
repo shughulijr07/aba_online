@@ -463,6 +463,7 @@
             success: function (response) {
                     
                 var activities = response
+                
                 var task_id = `tasks--${id_parts[1]}--${id_parts[2]}`
 
                 // capture previous local hours
@@ -486,19 +487,19 @@
                         }
                     }
                 }
-
                 timesheet_records[task_id] = activities
 
                 var table = $("#timesheet-task-table tbody");
                 var counter = 0;
                 var hoursIndex = 0;
                 var rows = [];
-                
+
                 activities.forEach(activity => {
                     let reader = '';
                     if(my_staff_id == supervisor_id){
                         reader = 'disabled';
                     }
+
                 rows.push(
                     '<tr>' +
                         `<td>${++counter}</td>`
