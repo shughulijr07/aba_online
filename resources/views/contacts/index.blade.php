@@ -50,45 +50,6 @@
                               <div class="col-md-12">
                                  <div class="form-group row">
                                     <label for="email" class="col-sm-3 col-md-3 col-form-label">
-                                       Product
-                                    </label>
-                                    <div class="col-sm-9 col-md-9">
-                                       <select name="" id="" class="form-control" disabled>
-                                          <option value="">--None--</option>
-                                          <option value="">Desktop</option>
-                                          <option value="">Laptop</option>
-                                          <option value="">Printer</option>
-                                          <option value="">Scanner</option>
-                                       </select>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group row">
-                                    <label for="email" class="col-sm-3 col-md-3 col-form-label">
-                                       Product Version
-                                    </label>
-                                    <div class="col-sm-9 col-md-9">
-                                       <select name="" id="" class="form-control" disabled>
-                                          <option value="">--None--</option>
-                                          <option value="">Version 1</option>
-                                          <option value="">Version 2</option>
-                                          <option value="">Version 3</option>
-                                          <option value="">Version 4</option>
-                                       </select>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-
-
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group row">
-                                    <label for="email" class="col-sm-3 col-md-3 col-form-label">
                                        Problem
                                     </label>
                                     <div class="col-sm-9 col-md-9">

@@ -1300,7 +1300,7 @@
     <div class="menu-content" id="contact-menu-content">
        <li>
             <a href="{{url('/contact')}}">
-                <i class="metismenu-icon pe-7s-note2"></i> Contact Form
+                <i class="metismenu-icon pe-7s-note2"></i> Contact UAT Support
             </a>
         </li>
     </div>
