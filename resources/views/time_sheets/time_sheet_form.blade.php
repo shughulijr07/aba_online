@@ -84,7 +84,7 @@
         </div>
         <!-- Header Ends Here-->
 
-
+        {{-- Task assigned by Supervisor Form --}}
         <div class="row d-none px-3" id="timesheet-tasks">
             <div><h5><strong> Activities on <span id="timesheet-tasks-heading"></span></strong></h4></div>
             <table style="width: 100%; !important;" class="table table-hover table-striped  table-bordered" id="timesheet-task-table">
@@ -111,10 +111,71 @@
                 </div>
             </div>
         </div>
+        <!-- End of Task assigned by Supervisor Form  -->
 
-        <!-- Lines -->
+        {{-- Development Task assigned by Supervisor Form --}}
+        <div class="row d-none mb-3" id="development-tasks">
+            <div class="ml-3"><h5><strong> Activities <span id="timesheet-dev-tasks-heading"></span></strong></h4></div>
+            <hr>
+            <div class="col-md-12">
+                    <form action="" method="get">
+                        <legend class="text-danger"></legend>
+                    <div class="row justify-content-between">
+                        <div class="col-md-8">
+                            <div class="position-relative form-group">
+                                <label for="employee_name" class="">
+                                    <span>Task Name</span>
+                                </label>
+                                <input name="dev_task_name" id="dev_task_name" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <label for="dev_hrs" class="">
+                                    <span>Hours</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input name="dev_hrs" id="dev_hrs" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <label for="add" class="ml-4">
+                                    <span></span>
+                                </label>
+                                <button class="btn btn-secondary btn-block btn-lg mt-2" id="add_dev_button" type="button" onclick="addToList()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                {{-- </fieldset> --}}
+            </div>
+        </div>
+        <!-- End of Development Task assigned by Supervisor Form  -->
+
+        {{-- Table List ofDevelopment Task   --}}
+        <div class="row d-none px-3" id="dev-tasks-list">
+            <table style="width: 100%; !important;" class="table table-hover table-striped  table-bordered" id="dev-task-table">
+                <thead>
+                    <th>Sn</th>
+                    <th>Task Name</th>
+                    <th>Hours</th>
+                    <th class="text-center">Action</th>
+                </thead>
+                <tbody>
+          
+                </tbody>
+            </table>
+            <div class="justify-content-end">
+                 <button class="btn btn-success text-center" type="button">
+                                Save Details
+                </button>
+            </div>
+            <br>
+        </div>
+        {{-- End of Table Development Task List --}}
+
         <div class="row" id="timesheet-table">
-
             <!-- Left Part -->
             <div class="col-sm-4 mr-0 pr-0">
                 <div class="table-responsive">
@@ -154,6 +215,11 @@
                             <th  style="border: none;"></th>
                         </tr>
 
+
+                        <tr class="bg-light-dark">
+                            <td class="no-wrap ctitle">Personal Development</td>
+                            <td class="no-wrap total-one-development" id="total--development--1">0</td>
+                        </tr>
 
                         <tr class="bg-light-dark">
                             <td class="no-wrap ctitle">Vacation</td>
@@ -264,7 +330,33 @@
                         </tr>
                         <!-- Gape Ends Here -->
 
+                        <!-- Development Starts Here -->
+                        <tr class="vacation-row bg-light-dark" id="project--1">
+                            @for( $d=1 ; $d<=$days_in_month; $d++)
+                                <?php
+                                $day_name = date('D',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
+                                $full_date = date('d-m-Y',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
+                                ?>
+                                <td class="vacation-column vacation--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
+                                    <input
+                                            class="column-input column-day-{{$d}} vacation--{{$d}}"
+                                            name="vacation--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm()"
 
+                                            @if($time_sheet->status == 10 && $leave_timesheet_link_mode == 2 &&
+                                               ( in_array($full_date,$staff_annual_leave_dates) ||
+                                                 in_array($full_date,$staff_paternity_leave_dates) ||
+                                                 in_array($full_date,$staff_maternity_leave_dates) )
+                                            )
+                                            value="24"
+                                            @else
+                                            value="@if( in_array( 'vacation--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['vacation--1--'.$d]}}@endif"
+                                            @endif
+                                            autocomplete="off"
+                                    >
+                                </td>
+                            @endfor
+                        </tr>
+                        <!-- Development Ends Here -->
 
                         <!-- Vacation Starts Here -->
                         <tr class="vacation-row bg-light-dark" id="project--1">
@@ -411,6 +503,8 @@
 
     var timesheet_records = {};
 
+    var dev_task_list = [];
+
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
     let timesheet_id = {!! $time_sheet->id !!};
@@ -428,6 +522,45 @@
         //update total hours for each project in percentage
         //calculate_project_hrs_percentage();
     });
+
+    function showDevForm(){
+        $("#timesheet-table").toggleClass("d-none");
+        $("#development-tasks").toggleClass("d-none");
+    }
+
+    function addToList(){
+        $("#dev-tasks-list").removeClass("d-none");
+        var task_name_selector = $("#dev_task_name");
+        var task_hr_selector = $("#dev_hrs");
+
+        var dev_task_name = task_name_selector.val();
+        var task_hrs = task_hr_selector.val();
+
+        dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
+
+        var table = $("#dev-task-table tbody");
+              var row =
+                    '<tr>' +
+                        `<td>${dev_task_list.length}</td>`
+                        + `<td>${dev_task_name}</td>`
+                        + `<td>${task_hrs}</td>`
+                        + `<td class="text-center">
+                            <button class="btn btn-danger" type="button" onclick="removeDevTask(${dev_task_list.length - 1})">
+                                Remove
+                            </button>
+                        </td>`
+                    + '</tr>'
+                table.append(row);
+        task_name_selector.val('');
+        task_hr_selector.val('');
+    }
+
+    function removeDevTask(index){
+        var table = $("#dev-task-table tbody");
+        var targetRow = table.children()[index]
+        targetRow.remove();
+        dev_task_list.splice(index, 1)  //remove this row from the list
+    }
 
     function toggleContainers() {
         $("#timesheet-table").toggleClass("d-none");
