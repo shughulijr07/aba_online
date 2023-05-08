@@ -155,7 +155,6 @@
 
         {{-- Table List ofDevelopment Task   --}}
         <div class="row d-none px-3" id="dev-tasks-list">
-            
             <table style="width: 100%; !important;" class="table table-hover table-striped  table-bordered" id="dev-task-table">
                 <thead>
                     <th>Sn</th>
@@ -164,11 +163,11 @@
                     <th class="text-center">Action</th>
                 </thead>
                 <tbody>
-          
+                
                 </tbody>
             </table>
             <div class="justify-content-end">
-                 <button class="btn btn-success text-center" type="button" id="dev-task-save">
+                 <button class="btn btn-success text-center" type="button" id="dev-task-save" onclick="saveDevTask()">
                     Save Details
                 </button>
             </div>
@@ -341,7 +340,7 @@
                                 <td class="vacation-column vacation--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
                                     <input
                                             class="column-input column-day-{{$d}} vacation--{{$d}}"
-                                            name="vacation--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm()"
+                                            name="vacation--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm(event)"
 
                                             @if($time_sheet->status == 10 && $leave_timesheet_link_mode == 2 &&
                                                ( in_array($full_date,$staff_annual_leave_dates) ||
@@ -505,6 +504,7 @@
     var timesheet_records = {};
 
     var dev_task_list = [];
+    var initialInput;
 
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
@@ -524,7 +524,9 @@
         //calculate_project_hrs_percentage();
     });
 
-    function showDevForm(){
+    function showDevForm(event){
+        // console.log( event.target );  
+        initialInput = event.target;
         $("#timesheet-table").toggleClass("d-none");
         $("#development-tasks").toggleClass("d-none");
     }
@@ -563,35 +565,18 @@
         dev_task_list.splice(index, 1)  //remove this row from the list
     }
 
-    //Save development task to get total hrs
-    $("#dev-task-save").click(function (e) { 
-        e.preventDefault();
-
-        // var column_id = $("#timesheet-tasks-heading").attr("meta-id");
-
-        var id_parts = column_id.split('--');
-        var project_id = id_parts[1]
-
-        var table = $("#timesheet-task-table tbody");
+    function saveDevTask(){
+                // dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
         var total_hours = 0;
-        var rows = table.find('tr');
-        var index = 0;
+        dev_task_list.forEach(el => {
+            total_hours += parseInt( el.dev_hrs );
+        });
+        $(initialInput).val( total_hours );
+        $("#timesheet-table").toggleClass("d-none");
+        $("#development-tasks").toggleClass("d-none");
+        $("#dev-tasks-list").addClass("d-none");
+    }
 
-        var task_id = `tasks--${id_parts[1]}--${id_parts[2]}`
-
-        for(var i = 0; i < rows.length; i++) {
-            var hour_input = rows[i].children[2]
-            var hours = hour_input.children[0].value
-            timesheet_records[task_id][i]['hours'] = hours
-            if(hours != "") {
-                total_hours += Number(hours)
-            }
-        }
-        
-        $(`#${column_id}`).val(total_hours)
-        $(`#${column_id}`).trigger("change");
-        toggleContainers();
-    });
 
     function toggleContainers() {
         $("#timesheet-table").toggleClass("d-none");
