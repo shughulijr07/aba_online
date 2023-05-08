@@ -505,6 +505,7 @@
 
     var dev_task_list = [];
     var initialInput;
+    var currentElementId;
 
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
@@ -527,6 +528,7 @@
     function showDevForm(event){
         // console.log( event.target );  
         initialInput = event.target;
+        currentElementId = $(initialInput).attr('id');
         $("#timesheet-table").toggleClass("d-none");
         $("#development-tasks").toggleClass("d-none");
     }
@@ -539,16 +541,17 @@
         var dev_task_name = task_name_selector.val();
         var task_hrs = task_hr_selector.val();
 
-        dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
+
+        dev_task_list[currentElementId][] = {'dev_task_name' : dev_task_name, 'dev_hrs':task_hrs};
 
         var table = $("#dev-task-table tbody");
               var row =
                     '<tr>' +
-                        `<td>${dev_task_list.length}</td>`
+                        `<td>${dev_task_list[currentElementId].length}</td>`
                         + `<td>${dev_task_name}</td>`
                         + `<td>${task_hrs}</td>`
                         + `<td class="text-center">
-                            <button class="btn btn-danger" type="button" onclick="removeDevTask(${dev_task_list.length - 1})">
+                            <button class="btn btn-danger" type="button" onclick="removeDevTask(${dev_task_list[currentElementId].length - 1})">
                                 Remove
                             </button>
                         </td>`
@@ -562,13 +565,13 @@
         var table = $("#dev-task-table tbody");
         var targetRow = table.children()[index]
         targetRow.remove();
-        dev_task_list.splice(index, 1)  //remove this row from the list
+        dev_task_list[currentElementId].splice(index, 1)  //remove this row from the list
     }
 
     function saveDevTask(){
                 // dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
         var total_hours = 0;
-        dev_task_list.forEach(el => {
+        dev_task_list[currentElementId].forEach(el => {
             total_hours += parseInt( el.dev_hrs );
         });
         $(initialInput).val( total_hours );
