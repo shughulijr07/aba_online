@@ -155,6 +155,7 @@
 
         {{-- Table List ofDevelopment Task   --}}
         <div class="row d-none px-3" id="dev-tasks-list">
+            
             <table style="width: 100%; !important;" class="table table-hover table-striped  table-bordered" id="dev-task-table">
                 <thead>
                     <th>Sn</th>
@@ -167,8 +168,8 @@
                 </tbody>
             </table>
             <div class="justify-content-end">
-                 <button class="btn btn-success text-center" type="button">
-                                Save Details
+                 <button class="btn btn-success text-center" type="button" id="dev-task-save">
+                    Save Details
                 </button>
             </div>
             <br>
@@ -561,6 +562,36 @@
         targetRow.remove();
         dev_task_list.splice(index, 1)  //remove this row from the list
     }
+
+    //Save development task to get total hrs
+    $("#dev-task-save").click(function (e) { 
+        e.preventDefault();
+
+        // var column_id = $("#timesheet-tasks-heading").attr("meta-id");
+
+        var id_parts = column_id.split('--');
+        var project_id = id_parts[1]
+
+        var table = $("#timesheet-task-table tbody");
+        var total_hours = 0;
+        var rows = table.find('tr');
+        var index = 0;
+
+        var task_id = `tasks--${id_parts[1]}--${id_parts[2]}`
+
+        for(var i = 0; i < rows.length; i++) {
+            var hour_input = rows[i].children[2]
+            var hours = hour_input.children[0].value
+            timesheet_records[task_id][i]['hours'] = hours
+            if(hours != "") {
+                total_hours += Number(hours)
+            }
+        }
+        
+        $(`#${column_id}`).val(total_hours)
+        $(`#${column_id}`).trigger("change");
+        toggleContainers();
+    });
 
     function toggleContainers() {
         $("#timesheet-table").toggleClass("d-none");
