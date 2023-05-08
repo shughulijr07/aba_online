@@ -115,7 +115,7 @@
 
         {{-- Development Task assigned by Supervisor Form --}}
         <div class="row d-none mb-3" id="development-tasks">
-            <div class="ml-3"><h5><strong> Activities <span id="timesheet-dev-tasks-heading"></span></strong></h4></div>
+            <div class="ml-3"><h5><strong> Personal Development Tasks <span id="timesheet-dev-tasks-heading"></span></strong></h4></div>
             <hr>
             <div class="col-md-12">
                     <form action="" method="get">
