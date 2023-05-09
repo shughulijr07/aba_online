@@ -337,10 +337,13 @@
                                 $day_name = date('D',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
                                 $full_date = date('d-m-Y',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
                                 ?>
-                                <td class="vacation-column vacation--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
+                                <td 
+                                style="padding: 0px; margin: 0px; border: 0px;"
+                                class="development-column development--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
                                     <input
-                                            class="column-input column-day-{{$d}} vacation--{{$d}}"
-                                            name="vacation--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm(event)"
+                                            class="column-input column-day-{{$d}} development--{{$d}}"
+                                        
+                                            name="development--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm(event)"
 
                                             @if($time_sheet->status == 10 && $leave_timesheet_link_mode == 2 &&
                                                ( in_array($full_date,$staff_annual_leave_dates) ||
@@ -349,7 +352,7 @@
                                             )
                                             value="24"
                                             @else
-                                            value="@if( in_array( 'vacation--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['vacation--1--'.$d]}}@endif"
+                                            value="@if( in_array( 'development--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['development--1--'.$d]}}@endif"
                                             @endif
                                             autocomplete="off"
                                     >
@@ -503,9 +506,14 @@
 
     var timesheet_records = {};
 
-    var dev_task_list = [];
+    var pusherList = [];
+    var dev_task_list = {};
     var initialInput;
     var currentElementId;
+
+    var totalDev = $("#total--development--1");
+
+    console.log( totalDev );
 
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
@@ -526,9 +534,22 @@
     });
 
     function showDevForm(event){
-        // console.log( event.target );  
         initialInput = event.target;
         currentElementId = $(initialInput).attr('id');
+        // clean pusher
+        pusherList = [];
+        // assign for the current selected
+        if( dev_task_list[currentElementId]){
+            if( dev_task_list[currentElementId].length > 0){
+                $("#dev-tasks-list").removeClass("d-none");
+                addTableRow();
+                dev_task_list[currentElementId].forEach( el => {
+                    pusherList.push(el);
+                    console.log('imaingia hapa jamani');
+                });
+            }
+        }
+        // console.log( event.target );  
         $("#timesheet-table").toggleClass("d-none");
         $("#development-tasks").toggleClass("d-none");
     }
@@ -541,15 +562,43 @@
         var dev_task_name = task_name_selector.val();
         var task_hrs = task_hr_selector.val();
 
+        pusherList.push({'dev_task_name' : dev_task_name, 'dev_hrs':task_hrs});
 
-        dev_task_list[currentElementId][] = {'dev_task_name' : dev_task_name, 'dev_hrs':task_hrs};
+        dev_task_list[currentElementId] = pusherList;
 
-        var table = $("#dev-task-table tbody");
-              var row =
+        console.log( pusherList );
+        console.log( dev_task_list );
+
+        addTableRow();
+        task_name_selector.val('');
+        task_hr_selector.val('');
+
+        // findDevSum( dev_task_list );
+    }
+
+    function findDevSum(arr){
+        var total = 0;
+        arr.forEach( el => {
+            el.forEach( task => {
+                total += parseInt( task.dev_hrs );
+            })
+        });
+        return total;
+    }
+
+    function addTableRow(){
+            var table = $("#dev-task-table tbody");
+           // delete all rows
+           table.html("");
+            console.log( dev_task_list[currentElementId].length );
+            var count = 0;
+            dev_task_list[currentElementId].forEach( el => {
+                count += 1;
+                var row =
                     '<tr>' +
-                        `<td>${dev_task_list[currentElementId].length}</td>`
-                        + `<td>${dev_task_name}</td>`
-                        + `<td>${task_hrs}</td>`
+                        `<td>${ count }</td>`
+                        + `<td>${el.dev_task_name}</td>`
+                        + `<td>${el.dev_hrs}</td>`
                         + `<td class="text-center">
                             <button class="btn btn-danger" type="button" onclick="removeDevTask(${dev_task_list[currentElementId].length - 1})">
                                 Remove
@@ -557,8 +606,8 @@
                         </td>`
                     + '</tr>'
                 table.append(row);
-        task_name_selector.val('');
-        task_hr_selector.val('');
+            });
+
     }
 
     function removeDevTask(index){
