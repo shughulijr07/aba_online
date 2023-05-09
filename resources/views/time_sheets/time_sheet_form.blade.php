@@ -600,7 +600,7 @@
                         + `<td>${el.dev_task_name}</td>`
                         + `<td>${el.dev_hrs}</td>`
                         + `<td class="text-center">
-                            <button class="btn btn-danger" type="button" onclick="removeDevTask(${dev_task_list[currentElementId].length - 1})">
+                            <button class="btn btn-danger" type="button" onclick="removeDevTask(event, ${dev_task_list[currentElementId].length - 1})">
                                 Remove
                             </button>
                         </td>`
@@ -610,9 +610,9 @@
 
     }
 
-    function removeDevTask(index){
+    function removeDevTask(event,index){
+        var targetRow = $(event.target).parent().parent();
         var table = $("#dev-task-table tbody");
-        var targetRow = table.children()[index]
         targetRow.remove();
         dev_task_list[currentElementId].splice(index, 1)  //remove this row from the list
     }
