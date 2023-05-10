@@ -331,7 +331,7 @@
                         <!-- Gape Ends Here -->
 
                         <!-- Development Starts Here -->
-                        <tr class="vacation-row bg-light-dark" id="project--1">
+                        <tr class="vacation-row bg-light-dark" id="development--1">
                             @for( $d=1 ; $d<=$days_in_month; $d++)
                                 <?php
                                 $day_name = date('D',strtotime($d.'-'.$time_sheet->month.'-'.$time_sheet->year));
@@ -341,7 +341,7 @@
                                 style="padding: 0px; margin: 0px; border: 0px;"
                                 class="development-column development--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
                                     <input
-                                            class="column-input column-day-{{$d}} development--{{$d}}"
+                                            class="dayBox2 column-input column-day-{{$d}} development--{{$d}}"
                                         
                                             name="development--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm(event)"
 
@@ -354,6 +354,10 @@
                                             @else
                                             value="@if( in_array( 'development--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['development--1--'.$d]}}@endif"
                                             @endif
+
+                                            developments="@if( in_array( 'development--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['development--1--'.$d]}}
+                                            @endif"
+
                                             autocomplete="off"
                                     >
                                 </td>
@@ -618,7 +622,7 @@
     }
 
     function saveDevTask(){
-                // dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
+        // dev_task_list.push({'dev_task_name' : dev_task_name, 'dev_hrs': task_hrs});
         var total_hours = 0;
         dev_task_list[currentElementId].forEach(el => {
             total_hours += parseInt( el.dev_hrs );
@@ -636,7 +640,9 @@
     }
 
     var dayBox = document.querySelectorAll(".daybox");
-    
+
+    var dayBox2 = document.querySelectorAll(".daybox2");
+
     dayBox.forEach(el => {
         $(el).on('click',function (e) { 
         e.preventDefault();
@@ -780,15 +786,24 @@
 
 
     var form = $("#main-div").parent('form');
-    
     $('#save_to_draft_btn1').click(function(e){
         e.preventDefault();
+
+
         var inputElement = `<input name='whichBtn' value='Save To Drafts'>`;
+
         $(this).append( inputElement );
         for(key in timesheet_records) {
             var strData = JSON.stringify( timesheet_records[key] );
             var inputElement = `<input name='${key}' value='${strData}'>`;
             $(this).append( inputElement );
+        }
+
+        for(const key in dev_task_list) {
+            var secondStrData = JSON.stringify( dev_task_list[key] );
+            var secondInputElement = `<input name='${key}' value='${secondStrData}'>`;
+            console.log( secondInputElement );
+            $(this).append( secondInputElement );
         }
 
         // resubmit the tasks of NON-EDITED boxes, otherwise they will be lost because the json is going to be replaced with the new one. 
@@ -808,6 +823,24 @@
             if(has_tasks && !is_edited) {
                 var inputElement = `<input name='${task_id}' value='${db_tasks}'>`;
                 $(this).append( inputElement );
+            }
+        })
+
+
+        dayBox2.forEach(el => {
+            var selected_column = $(el);
+            var column_id = selected_column.attr('id');
+            var db_tasks = $(`#${column_id}`).attr("developments");
+            // if item is not in timesheet_records variable, and has tasks then include it. use id to check
+    
+            var id_parts = column_id.split('--');
+            var task_id = `development--${id_parts[1]}--${id_parts[2]}`
+            var has_tasks = db_tasks != '';
+            var is_edited = dev_task_list[task_id] != undefined;
+
+            if(has_tasks && !is_edited) {
+                var secInputElement = `<input name='${task_id}' value='${db_tasks}'>`;
+                $(this).append( secInputElement );
             }
         })
         $(form).submit();

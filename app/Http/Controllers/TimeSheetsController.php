@@ -771,6 +771,7 @@ class TimeSheetsController extends Controller
 
     public function storeTimesheetData(Request $request)
     {
+        dd($request->all());
 
         //detect late submissions and lock them
         TimeSheetLateSubmission::lock_late_time_sheet_submissions();
