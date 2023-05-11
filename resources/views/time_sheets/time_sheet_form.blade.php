@@ -815,7 +815,7 @@
 
 
     var form = $("#main-div").parent('form');
-    
+
     $('#save_to_draft_btn1').click(function(e){
         e.preventDefault();
 
@@ -886,9 +886,19 @@
             var inputElement = `<input type='hidden' name='${key}' value='${strData}'>`;
             $(this).append( inputElement );
         }
+        
+        for(const key in dev_task_list) {
+            var id_parts = key.split('--');
+            var development_id = `development--${id_parts[1]}--${id_parts[2]}`
+            var secondStrData = JSON.stringify( dev_task_list[key] );
+            var secondInputElement = `<input type='hidden' name='${development_id}' value='${secondStrData}'>`;
+            console.log( secondInputElement );
+            $(form).append( secondInputElement );
+        }
 
         // resubmit the tasks of NON-EDITED boxes, otherwise they will be lost because the json is going to be replaced with the new one. 
         // you will know non-edited boxes if they do no exist in timesheet_records variable
+
 
         dayBox.forEach(el => {
             var selected_column = $(el);
@@ -906,6 +916,24 @@
                 $(this).append( inputElement );
             }
         })
+
+        dayBox2.forEach(el => {
+            var selected_column = $(el);
+            var column_id = selected_column.attr('id');
+            var db_tasks = $(`#${column_id}`).attr("developments");
+            // if item is not in timesheet_records variable, and has tasks then include it. use id to check
+    
+            var id_parts = column_id.split('--');
+            var task_id = `development--${id_parts[1]}--${id_parts[2]}`
+            var has_tasks = db_tasks != '';
+            var is_edited = dev_task_list[task_id] != undefined;
+
+            if(has_tasks && !is_edited) {
+                var secInputElement = `<input type='hidden' name='${task_id}' value='${db_tasks}'>`;
+                $(this).append( secInputElement );
+            }
+        })
+
         $(form).submit();
     })
 
@@ -1041,7 +1069,6 @@
             }else{
                 total_hrs_for_one_project_in_percentage = (total_hrs_for_one_project/total_hrs_for_all_projects)*100;
             }
-
 
             //update LOE on summary section
             $("#hrs--project--"+project_no).text(total_hrs_for_one_project);
