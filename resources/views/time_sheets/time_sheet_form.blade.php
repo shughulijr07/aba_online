@@ -537,8 +537,20 @@
             update_totals(selected_column);
         });
 
+        // Initialize db data
+        for( const key in database_dev_task_list ){
+            if (database_dev_task_list[key] != null){
+                  if ( key.split('--').indexOf('development') != -1 ){
+                    if (database_dev_task_list[key].length > 0){
+                        dev_task_list[key] = JSON.parse(database_dev_task_list[key]);
+                    }
+                }
+            }
+        }
+
         //update total hours for each project in percentage
         //calculate_project_hrs_percentage();
+
     });
 
     function showDevForm(event){
@@ -550,6 +562,7 @@
                 dev_task_list[currentElementId] = JSON.parse( database_dev_task_list[currentElementId] );
             }
          }
+
     
         // clean pusher
         pusherList = [];
