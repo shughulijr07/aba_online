@@ -91,6 +91,7 @@
                 <thead>
                     <th>Sn</th>
                     <th>Activity</th>
+                    <th>Expected Hrs</th>
                     <th>Hours</th>
                     <th>Status</th>
                 </thead>
@@ -644,6 +645,8 @@
         var table = $("#dev-task-table tbody");
         targetRow.remove();
         dev_task_list[currentElementId].splice(index, 1)  //remove this row from the list
+        console.log( dev_task_list );
+        console.log( dev_task_list[currentElementId] );
     }
 
     function saveDevTask(){
@@ -736,6 +739,7 @@
                     '<tr>' +
                         `<td>${++counter}</td>`
                         + `<td>${activity.task_name}</td>`
+                        + `<td>${activity.exp_hrs}</td>`
                         + `<td><input class="form-control form-control-sm"`
                         + ` ${reader} value='${getPrevHours(prev_hours, hoursIndex++)}'></td>`
                         + `<td>Complete</td>`
@@ -796,7 +800,7 @@
         var task_id = `tasks--${id_parts[1]}--${id_parts[2]}`
 
         for(var i = 0; i < rows.length; i++) {
-            var hour_input = rows[i].children[2]
+            var hour_input = rows[i].children[3]
             var hours = hour_input.children[0].value
             timesheet_records[task_id][i]['hours'] = hours
             if(hours != "") {

@@ -605,13 +605,16 @@ class TimeSheetsController extends Controller
                 $data = request()->validate([
                     'timesheet_client_id' => 'required',
                     'task_name' => 'required',
+                    'exp_hrs' => 'required',
                     'time_sheet_id' => 'required',
                    
                 ]);
+
         
                 Task::create([
                     'timesheet_client_id' => $data['timesheet_client_id'],
                     'task_name' => $data['task_name'],
+                    'exp_hrs' => $data['exp_hrs'],
                 ]);
             }
             return redirect()->to('assign_client_task/'.$data['time_sheet_id']);

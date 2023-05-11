@@ -70,6 +70,7 @@
                     <tr>
                         <th>Clients</th>
                         <th>Task</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -82,9 +83,11 @@
                         <td class="position-relative">
                             @foreach (App\Models\Task::where('timesheet_client_id', $clientsheet->id)->get() as $task)
                             <div class="d-flex">
-                                <p>{{ $task->task_name }} </p>
+                                <p>{{ $task->task_name }} </p> 
+                                <span class="ml-5">(Expected Hour - {{$task->exp_hrs}})</span>
                                @if ($time_sheet->status == 10)
                                     <div class="d-flex ml-auto">
+                                        
                                     <a href="#">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
@@ -105,6 +108,8 @@
                                     <div class="form-group">
                                         <label for="">Task Name</label>
                                         <input type="text" name="task_name" class="form-control" required>
+                                         <label for="">Expected Hours</label>
+                                        <input type="text" name="exp_hrs" class="form-control" required>
                                     </div>
                                     <button type="submit" class="btn btn-sm btn-success">Save Detail</button>
                                     <button type="button" class="btn btn-sm btn-light cancelTask" onclick="cancelTask({{ $client->id}})">Cancel</button>

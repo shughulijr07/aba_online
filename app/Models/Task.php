@@ -18,6 +18,7 @@ class Task extends Model
         'end_time',
         'hour',
         'task_name',
+        'exp_hrs',
         'task_day',
         'status',
         'description',        

@@ -49,6 +49,7 @@ class ActivitiesController extends Controller
          }
         $activities = Task::where('timesheet_client_id', $timesheet_client_id)
         ->get();
+        // dd($activities);
 
         return response()->json($activities);
 
