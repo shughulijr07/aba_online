@@ -277,7 +277,6 @@
                         </thead>
                         <!-- Table Head Ends Here -->
 
-
                         <!-- (DAYBOX) Table Body Starts Here, All Projects Entries Are Found Here -->
                         <tbody>
 
@@ -347,7 +346,7 @@
                                             name="develop--1--{{$d}}" 
                                             pointer="development--1--{{$d}}"
                                             id="develop--1--{{$d}}" onclick="showDevForm(event)"
-
+                                            
                                             @if($time_sheet->status == 10 && $leave_timesheet_link_mode == 2 &&
                                                ( in_array($full_date,$staff_annual_leave_dates) ||
                                                  in_array($full_date,$staff_paternity_leave_dates) ||
@@ -559,7 +558,7 @@
         currentElementId = $(initialInput).attr('pointer');
             console.log( currentElementId );
         if( currentElementId in database_dev_task_list ){
-            if (database_dev_task_list[currentElementId].length > 0){
+            if (dev_task_list[currentElementId].length < 0){
                 dev_task_list[currentElementId] = JSON.parse( database_dev_task_list[currentElementId] );
             }
          }
@@ -625,12 +624,12 @@
             dev_task_list[currentElementId].forEach( el => {
                 count += 1;
                 var row =
-                    '<tr>' +
+                    `<tr id="${dev_task_list[currentElementId]}--${count}">` +
                         `<td>${ count }</td>`
                         + `<td>${el.dev_task_name}</td>`
                         + `<td>${el.dev_hrs}</td>`
                         + `<td class="text-center">
-                            <button class="btn btn-danger" type="button" onclick="removeDevTask(event, ${dev_task_list[currentElementId].length - 1})">
+                            <button class="btn btn-danger" type="button" onclick="removeDevTask(event,${count}, ${dev_task_list[currentElementId].length - 1})">
                                 Remove
                             </button>
                         </td>`
@@ -640,11 +639,12 @@
 
     }
 
-    function removeDevTask(event,index){
+    function removeDevTask(event,count,index){
         var targetRow = $(event.target).parent().parent();
         var table = $("#dev-task-table tbody");
         targetRow.remove();
-        dev_task_list[currentElementId].splice(index, 1)  //remove this row from the list
+        dev_task_list[currentElementId].splice((count-1), 1)  //remove this row from the list
+        addTableRow();
         console.log( dev_task_list );
         console.log( dev_task_list[currentElementId] );
     }
@@ -815,9 +815,9 @@
 
 
     var form = $("#main-div").parent('form');
+    
     $('#save_to_draft_btn1').click(function(e){
         e.preventDefault();
-
 
         var inputElement = `<input type='hidden' name='whichBtn' value='Save To Drafts'>`;
 

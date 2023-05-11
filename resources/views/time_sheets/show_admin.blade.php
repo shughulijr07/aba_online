@@ -552,13 +552,13 @@
 
         $(function () {
 
-            $("#time_sheet_section  :input").prop("readonly",true);
+            // $("#time_sheet_section  :input").prop("readonly",true);
 
         });
 
 
-        //when input in vacation, sick or other is clicked
-        $("input").on('click',function(){
+        // when input in vacation, sick or other is clicked
+        $("inputH").on('click',function(){
 
             var row = $(this).parent().parent();
             var row_type = row.attr('class');
