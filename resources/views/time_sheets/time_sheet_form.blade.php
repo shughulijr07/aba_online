@@ -341,9 +341,11 @@
                                 style="padding: 0px; margin: 0px; border: 0px;"
                                 class="development-column development--1 date--{{$d}}  @if($day_name == 'Sat' || $day_name == 'Sun') bg-weekend @endif   @if( in_array($full_date,array_keys($holidays))) bg-holiday @endif">
                                     <input
-                                            class="dayBox2 column-input column-day-{{$d}} development--{{$d}}"
+                                            class="dayBox2 column-input column-day-{{$d}} develop--{{$d}}"
                                         
-                                            name="development--1--{{$d}}" id="development--1--{{$d}}" onclick="showDevForm(event)"
+                                            name="develop--1--{{$d}}" 
+                                            pointer="development--1--{{$d}}"
+                                            id="develop--1--{{$d}}" onclick="showDevForm(event)"
 
                                             @if($time_sheet->status == 10 && $leave_timesheet_link_mode == 2 &&
                                                ( in_array($full_date,$staff_annual_leave_dates) ||
@@ -352,14 +354,15 @@
                                             )
                                             value="24"
                                             @else
-                                            value="@if( in_array( 'development--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['development--1--'.$d]}}@endif"
+                                            value="@if( in_array( 'develop--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['develop--1--'.$d]}}@endif"
                                             @endif
 
                                             developments="@if( in_array( 'development--1--'.$d ,array_keys($time_sheet_lines))){{ $time_sheet_lines['development--1--'.$d]}}
                                             @endif"
-
                                             autocomplete="off"
                                     >
+
+
                                 </td>
                             @endfor
                         </tr>
@@ -512,12 +515,13 @@
 
     var pusherList = [];
     var dev_task_list = {};
+    var database_dev_task_list = @json($time_sheet_lines);
+
+    console.log( database_dev_task_list );
     var initialInput;
     var currentElementId;
 
     var totalDev = $("#total--development--1");
-
-    console.log( totalDev );
 
     let supervisor_id = {!! $responsible_spv !!};
     let my_staff_id = {!! $my_staff_id !!};
@@ -539,7 +543,14 @@
 
     function showDevForm(event){
         initialInput = event.target;
-        currentElementId = $(initialInput).attr('id');
+        currentElementId = $(initialInput).attr('pointer');
+            console.log( currentElementId );
+        if( currentElementId in database_dev_task_list ){
+            if (database_dev_task_list[currentElementId].length > 0){
+                dev_task_list[currentElementId] = JSON.parse( database_dev_task_list[currentElementId] );
+            }
+         }
+    
         // clean pusher
         pusherList = [];
         // assign for the current selected
@@ -590,6 +601,7 @@
         return total;
     }
 
+   
     function addTableRow(){
             var table = $("#dev-task-table tbody");
            // delete all rows
@@ -790,20 +802,22 @@
         e.preventDefault();
 
 
-        var inputElement = `<input name='whichBtn' value='Save To Drafts'>`;
+        var inputElement = `<input type='hidden' name='whichBtn' value='Save To Drafts'>`;
 
-        $(this).append( inputElement );
+        $(form).append( inputElement );
         for(key in timesheet_records) {
             var strData = JSON.stringify( timesheet_records[key] );
-            var inputElement = `<input name='${key}' value='${strData}'>`;
-            $(this).append( inputElement );
+            var inputElement = `<input type='hidden' name='${key}' value='${strData}'>`;
+            $(form).append( inputElement );
         }
 
         for(const key in dev_task_list) {
+            var id_parts = key.split('--');
+            var development_id = `development--${id_parts[1]}--${id_parts[2]}`
             var secondStrData = JSON.stringify( dev_task_list[key] );
-            var secondInputElement = `<input name='${key}' value='${secondStrData}'>`;
+            var secondInputElement = `<input type='hidden' name='${development_id}' value='${secondStrData}'>`;
             console.log( secondInputElement );
-            $(this).append( secondInputElement );
+            $(form).append( secondInputElement );
         }
 
         // resubmit the tasks of NON-EDITED boxes, otherwise they will be lost because the json is going to be replaced with the new one. 
@@ -821,7 +835,7 @@
             var is_edited = timesheet_records[task_id] != undefined;
 
             if(has_tasks && !is_edited) {
-                var inputElement = `<input name='${task_id}' value='${db_tasks}'>`;
+                var inputElement = `<input type='hidden' name='${task_id}' value='${db_tasks}'>`;
                 $(this).append( inputElement );
             }
         })
@@ -839,7 +853,7 @@
             var is_edited = dev_task_list[task_id] != undefined;
 
             if(has_tasks && !is_edited) {
-                var secInputElement = `<input name='${task_id}' value='${db_tasks}'>`;
+                var secInputElement = `<input type='hidden' name='${task_id}' value='${db_tasks}'>`;
                 $(this).append( secInputElement );
             }
         })
@@ -848,11 +862,11 @@
 
     $('#submit_time_sheet_btn1').click(function(e){
         e.preventDefault();
-         var inputElement = `<input name='whichBtn' value='Submit Time Sheet'>`;
+         var inputElement = `<input type='hidden' name='whichBtn' value='Submit Time Sheet'>`;
         $(this).append( inputElement );
         for(key in timesheet_records) {
             var strData = JSON.stringify( timesheet_records[key] );
-            var inputElement = `<input name='${key}' value='${strData}'>`;
+            var inputElement = `<input type='hidden' name='${key}' value='${strData}'>`;
             $(this).append( inputElement );
         }
 
@@ -871,7 +885,7 @@
             var is_edited = timesheet_records[task_id] != undefined;
 
             if(has_tasks && !is_edited) {
-                var inputElement = `<input name='${task_id}' value='${db_tasks}'>`;
+                var inputElement = `<input type='hidden' name='${task_id}' value='${db_tasks}'>`;
                 $(this).append( inputElement );
             }
         })

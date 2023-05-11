@@ -771,8 +771,7 @@ class TimeSheetsController extends Controller
 
     public function storeTimesheetData(Request $request)
     {
-        dd($request->all());
-
+        dd( $request->all() );
         //detect late submissions and lock them
         TimeSheetLateSubmission::lock_late_time_sheet_submissions();
 
@@ -1072,7 +1071,7 @@ class TimeSheetsController extends Controller
         $my_role_id = Auth::user()->role_id;
         $my_staff_id = $current_logged_staff->id;
 
-        //dd($time_sheet);
+        // dd($time_sheet);
 
         return view('time_sheets.show',
             compact( 'time_sheet','timeSheetSupervisors', 'responsible_spv', 'spv_name', 'employee_name','my_staff_id',
@@ -1430,7 +1429,7 @@ class TimeSheetsController extends Controller
         $controller_name = 'time_sheets';
         $view_type = 'edit';
         $my_staff_id = $current_logged_staff->id;
-        
+        // dd( $time_sheet_lines );
         return view('time_sheets.edit',
             compact( 'time_sheet','time_sheet_lines', 'timeSheetSupervisors', 'responsible_spv', 'employee_name','spv_name', 'my_staff_id',
                 'supervisors_mode','months','days_in_month', 'projects','holidays','time_sheet_statuses','leave_timesheet_link_mode',
